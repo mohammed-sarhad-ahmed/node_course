@@ -1,7 +1,7 @@
 import express from "express";
 import { getCars, addCar, deleteCar } from "../handlers/cars.js";
 
-const Router = new express.Router();
+const Router = express.Router();
 
 Router.route("/").get(getCars).post(addCar);
 
