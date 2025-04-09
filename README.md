@@ -2,8 +2,6 @@
 
 Welcome to the **Backend Development Course**! This repository contains all the source code, exercises, and learning materials used in a hands-on, hybrid course taught to a class of 17 students.
 
-Whether you're just getting started or looking to deepen your understanding of server-side programming, this course is designed to provide a practical and project-driven introduction to backend development.
-
 ---
 
 ## 🏫 Course Format
