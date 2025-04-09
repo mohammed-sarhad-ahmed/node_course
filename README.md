@@ -1,6 +1,8 @@
 # 🧠 Backend Development Course
 
-Welcome to the **Backend Development Course**! This repository contains all the source code, exercises, and learning materials you’ll need to master backend web development. Whether you're just getting started or looking to deepen your understanding of server-side programming, this course is for you.
+Welcome to the **Backend Development Course**! This repository contains all the source code, exercises, and learning materials used in a hands-on, in-person course taught to a class of 18 students.
+
+
 
 ---
 
@@ -16,6 +18,16 @@ Welcome to the **Backend Development Course**! This repository contains all the 
 
 ---
 
+## 🏫 Course Format
+
+- 👨‍🏫 Taught in person to a class of 18 students
+- 💬 Interactive sessions with live coding
+- 💻 Practical examples and mini-projects
+- 📝 Exercises and homework after each module
+- 🙋‍♂️ Q&A and group debugging
+
+---
+
 ## 🛠 Technologies Used
 
 - **Node.js**
@@ -25,9 +37,8 @@ Welcome to the **Backend Development Course**! This repository contains all the 
 - **JWT**
 - **Nodemon**
 - **dotenv**
-- **Postman** (for API testing)
+- **Postman**
 
 ---
-
 
 
