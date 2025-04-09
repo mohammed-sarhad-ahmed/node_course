@@ -11,8 +11,8 @@ Welcome to the **Backend Development Course**! This repository contains all the 
 - HTTP, REST APIs & Web Servers
 - Node.js & Express.js fundamentals
 - Working with Databases (MongoDB, Mongoose)
-- Authentication & Authorization (JWT, Sessions)
-- Error Handling & Logging
+- Authentication & Authorization (JWT)
+- Error Handling
 - Async/Await & Promises
 - File Uploads, Middleware, and more!
 
