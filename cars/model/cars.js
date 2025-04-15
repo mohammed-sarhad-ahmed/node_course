@@ -10,9 +10,6 @@ const carSchema = new mongoose.Schema(
       type: String,
       required: [true, "the model of the car must be provided"],
     },
-    releaseYear: {
-      type: Number,
-    },
   },
   {
     timestamps: true,
