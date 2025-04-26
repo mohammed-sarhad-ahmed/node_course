@@ -27,3 +27,17 @@ export const deleteCar = async (req, res) => {
   });
   res.status(204).end();
 };
+
+export const updateCar = async (req, res) => {
+  const { id } = req.params;
+  const car = await CarModel.findByIdAndUpdate(id, req.body, {
+    runValidators: true,
+    new: true,
+  });
+  res.status(200).send({
+    status: "success",
+    data: {
+      car,
+    },
+  });
+};
