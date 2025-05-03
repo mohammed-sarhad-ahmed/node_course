@@ -22,6 +22,19 @@ app.use(morgan("short"));
 
 app.use("/cars", carsRouter);
 
+app.all("*", (req, res) => {
+  next(new Error("404"));
+});
+app.use((err, req, res, next) => {
+  if (err.message === "404") {
+    res.status(404).send({
+      message: "route not found",
+    });
+  }
+  res.status(400).send({
+    message: "something went wrong",
+  });
+});
 app.listen(process.env.PORT, () => {
   console.log(`started a server at port ${process.env.PORT} `);
 });

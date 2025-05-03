@@ -1,6 +1,12 @@
 import { CarModel } from "../model/cars.js";
 
-export const getCars = async (req, res) => {
+const handleError = (func) => {
+  return (req, res, next) => {
+    func(req, res, next).catch(next);
+  };
+};
+
+export const getCars = handleError(async (req, res) => {
   const cars = await CarModel.find();
   res.status(200).send({
     status: "success",
@@ -8,9 +14,9 @@ export const getCars = async (req, res) => {
       cars,
     },
   });
-};
+});
 
-export const addCar = async (req, res) => {
+export const addCar = handleError(async (req, res) => {
   const car = await CarModel.create(req.body);
   res.status(200).send({
     status: "success",
@@ -18,17 +24,16 @@ export const addCar = async (req, res) => {
       car,
     },
   });
-};
-
-export const deleteCar = async (req, res) => {
+});
+export const deleteCar = handleError(async (req, res) => {
   const { id } = req.params;
   await CarModel.deleteOne({
     _id: id,
   });
   res.status(204).end();
-};
+});
 
-export const updateCar = async (req, res) => {
+export const updateCar = handleError(async (req, res) => {
   const { id } = req.params;
   const car = await CarModel.findByIdAndUpdate(id, req.body, {
     runValidators: true,
@@ -40,4 +45,4 @@ export const updateCar = async (req, res) => {
       car,
     },
   });
-};
+});
