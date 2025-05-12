@@ -3,6 +3,7 @@ import carsRouter from "./controller/cars.js";
 import mongoose from "mongoose";
 import morgan from "morgan";
 import dotenv from "dotenv";
+import userRouter from "./controller/user.js";
 
 if (process.env.NODE_ENV === "dev") {
   dotenv.config({
@@ -20,6 +21,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan("short"));
 
+app.use("/user", userRouter);
 app.use("/cars", carsRouter);
 
 app.all("*", (req, res) => {

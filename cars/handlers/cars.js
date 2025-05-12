@@ -1,10 +1,5 @@
 import { CarModel } from "../model/cars.js";
-
-const handleError = (func) => {
-  return (req, res, next) => {
-    func(req, res, next).catch(next);
-  };
-};
+import { handleError } from "../utils/handleError.js";
 
 export const getCars = handleError(async (req, res) => {
   const cars = await CarModel.find();
