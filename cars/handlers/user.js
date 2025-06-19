@@ -2,6 +2,7 @@ import { UserModel } from "../model/user.js";
 import { handleError } from "../utils/handleError.js";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
+import { promisify } from "util";
 
 function generateJWT(id) {
   return jwt.sign(
@@ -22,7 +23,6 @@ export const signup = handleError(async (req, res, next) => {
     name,
     confirmPassword,
   });
-
   const token = generateJWT(newUser._id);
   res.status(200).json({
     status: "success",
@@ -36,7 +36,7 @@ export const signup = handleError(async (req, res, next) => {
 export const login = handleError(async (req, res, next) => {
   const { email, password } = req.body;
 
-  const user = await UserModel.find({
+  const user = await UserModel.findOne({
     email,
   }).select("+password");
   if (!user) {
@@ -46,10 +46,32 @@ export const login = handleError(async (req, res, next) => {
   if (!isPassword) {
     next(new Error("invalid credentials"));
   }
-  const token = generateJWT(newUser._id);
+  const token = generateJWT(user._id);
   res.status(200).send({
     data: {
       token,
     },
   });
+});
+
+export const protect = handleError(async (req, res, next) => {
+  //token send
+  let token;
+  if (req.headers.authorization) {
+    token = req.headers.authorization;
+  }
+  if (!token) {
+    return next("token is not provided");
+  }
+  //token is correct
+  const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
+  //user exist
+  const user = await UserModel.findOne({
+    _id: decoded.id,
+  });
+  if (!user) {
+    return next("user no longer exist");
+  }
+  req.user = user;
+  next();
 });

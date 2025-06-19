@@ -7,25 +7,26 @@ const userSchema = new mongoose.Schema(
     name: {
       type: String,
       required: [true, "please provide a name"],
-      minLength: 4,
-      maxLength: 20,
+      minlength: 4,
+      maxlength: 20,
     },
     email: {
       type: String,
       required: [true, "please provide a email"],
       lowercase: true,
+      unique: true,
       validate: [validator.isEmail, "please provide a valid email"],
     },
     password: {
       type: String,
       required: [true, "please provide a password"],
-      minLength: 8,
+      minlength: 8,
       select: false,
     },
     confirmPassword: {
       type: String,
       required: [true, "please provide a password"],
-      minLength: 8,
+      minlength: 8,
       validate: {
         validator: function (confirmPassword) {
           return this.password === confirmPassword;

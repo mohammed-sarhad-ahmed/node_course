@@ -24,7 +24,7 @@ app.use(morgan("short"));
 app.use("/user", userRouter);
 app.use("/cars", carsRouter);
 
-app.all("*", (req, res) => {
+app.all("*", (req, res, next) => {
   next(new Error("404"));
 });
 app.use((err, req, res, next) => {
@@ -34,7 +34,7 @@ app.use((err, req, res, next) => {
     });
   }
   res.status(400).send({
-    message: "something went wrong",
+    err,
   });
 });
 app.listen(process.env.PORT, () => {
